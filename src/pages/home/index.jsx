@@ -78,26 +78,29 @@ const Home = () => {
     });
   }, []);
 
-  console.log("ref1", The1);
-  console.log("ref2", The2);
-  console.log("ref3", The3);
-  console.log("ref4", The4);
-
   return (
     <div className="home">
       {The1 !== null && The2 !== null && The3 !== null && The4 !== null && (
         <div
           style={{
-            margin: "0 auto",
-            display: "flex",
-            justifyContent: "center",
-            paddingTop: 200,
+            paddingTop: 100,
           }}
         >
-          <GaugeChart title="Therm 1" value={The1} />
-          <GaugeChart title="Therm 2" value={The2} />
-          <GaugeChart title="Therm 3" value={The3} />
-          <GaugeChart title="Therm 4" value={The4} />
+          <h1 style={{ color: "#fff", textAlign: "center", paddingBottom: 20 }}>
+            Temperaturas
+          </h1>
+          <div
+            style={{
+              margin: "0 auto",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <GaugeChart title="Therm 1" value={The1} />
+            <GaugeChart title="Therm 2" value={The2} />
+            <GaugeChart title="Therm 3" value={The3} />
+            <GaugeChart title="Therm 4" value={The4} />
+          </div>
         </div>
       )}
     </div>

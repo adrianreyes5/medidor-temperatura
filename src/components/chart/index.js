@@ -8,8 +8,8 @@ const GaugeChart = ({ value, title }) => {
         width={400}
         height={300}
         id="#grapsh"
+        style={{ display: "flex", justifyContent: "center" }}
         chartType="Gauge"
-        loader={<div>Loading Chart</div>}
         data={[
           ["Label", "Value"],
           [title, value],

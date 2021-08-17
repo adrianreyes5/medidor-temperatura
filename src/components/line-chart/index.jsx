@@ -127,12 +127,12 @@ const LineChart = ({ dataLimit, tth, title }) => {
           ],
         ]);
       }
-    }, 2000);
+    }, 1000);
   }, [dataLimit, tth]);
 
   return (
     <>
-      {lineCharData.length > 100 && (
+      {lineCharData.length > 499 && (
         <Chart
           width={"800px"}
           height={"400px"}
@@ -147,6 +147,11 @@ const LineChart = ({ dataLimit, tth, title }) => {
             vAxis: {
               title: "Temperatura (°C)",
               ticks: [-20, 0, 20, 40],
+            },
+            animation: {
+              startup: true,
+              easing: 'inAndOut',
+              duration: 1000,
             },
           }}
         />

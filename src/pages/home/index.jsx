@@ -4,13 +4,15 @@ import LineChart from "../../components/line-chart";
 
 import firebase from "../../config/firebase";
 
+import { BeatLoader } from "react-spinners";
+
 import "./styles.css";
 
 const Home = () => {
-  const [The1, setThe1] = useState(null);
-  const [The2, setThe2] = useState(null);
-  const [The3, setThe3] = useState(null);
-  const [The4, setThe4] = useState(null);
+  const [The1, setThe1] = useState(0);
+  const [The2, setThe2] = useState(0);
+  const [The3, setThe3] = useState(0);
+  const [The4, setThe4] = useState(0);
 
   const [selectedTherm, setSelectedTherm] = useState(null);
   const [selectedThermTitle, setSelectedThermTitle] = useState(null);
@@ -98,79 +100,96 @@ const Home = () => {
   return (
     <div className="home">
       {The1 !== null && The2 !== null && The3 !== null && The4 !== null && (
-        <div
-          style={{
-            paddingTop: 100,
-          }}
-        >
-          <h1 style={{ color: "#fff", textAlign: "center", paddingBottom: 20 }}>
-            Temperaturas
-          </h1>
-          <div
-            style={{
-              margin: "0 auto",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <GaugeChart title="Therm 1" value={The1} />
-            <GaugeChart title="Therm 2" value={The2} />
-            <GaugeChart title="Therm 3" value={The3} />
-            <GaugeChart title="Therm 4" value={The4} />
-          </div>
-
-          <h1 style={{ color: "#fff", textAlign: "center", paddingTop: 50 }}>
-            Elegir gráfica
-          </h1>
-
-          <div className="button-wrapper">
-            <div
-              className="button"
-              onClick={() => handleTherm("/Refrigerador/TThe1", "Thermistor 1")}
+        <div className="container">
+          <div>
+            <h1
+              style={{ color: "#fff", textAlign: "center", paddingBottom: 20 }}
             >
-              Thermistor 1
-            </div>
+              Temperaturas
+            </h1>
             <div
-              className="button"
-              onClick={() => handleTherm("/Refrigerador/TThe2", "Thermistor 2")}
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+              }}
             >
-              Thermistor 2
-            </div>
-            <div
-              className="button"
-              onClick={() => handleTherm("/Refrigerador/TThe3", "Thermistor 3")}
-            >
-              Thermistor 3
-            </div>
-            <div
-              className="button"
-              onClick={() => handleTherm("/Refrigerador/TThe4", "Thermistor 4")}
-            >
-              Thermistor 4
-            </div>
-          </div>
-
-          {!loading ? (
-            showLineChart && (
-              <div
-                style={{
-                  margin: "0 auto",
-                  display: "flex",
-                  justifyContent: "center",
-                  marginTop: 80,
-                  paddingBottom: 80,
-                }}
-              >
-                <LineChart
-                  tth={selectedTherm}
-                  dataLimit={100}
-                  title={selectedThermTitle}
-                />
+              <div>
+                <GaugeChart title="Therm 1" value={The1} />
+                <GaugeChart title="Therm 2" value={The2} />
               </div>
-            )
-          ) : (
-            <h1 style={{ color: "#fff", textAlign: "center" }}>Cargando...</h1>
-          )}
+              <div>
+                <GaugeChart title="Therm 3" value={The3} />
+                <GaugeChart title="Therm 4" value={The4} />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h1 style={{ color: "#fff", textAlign: "center", minWidth: 748 }}>
+              Elegir gráfica
+            </h1>
+
+            <div className="button-wrapper">
+              <div
+                className="button"
+                onClick={() =>
+                  handleTherm("/Refrigerador/TThe1", "Termostato 1")
+                }
+              >
+                Termostato 1
+              </div>
+              <div
+                className="button"
+                onClick={() =>
+                  handleTherm("/Refrigerador/TThe2", "Termostato 2")
+                }
+              >
+                Termostato 2
+              </div>
+              <div
+                className="button"
+                onClick={() =>
+                  handleTherm("/Refrigerador/TThe3", "Termostato 3")
+                }
+              >
+                Termostato 3
+              </div>
+              <div
+                className="button"
+                onClick={() =>
+                  handleTherm("/Refrigerador/TThe4", "Termostato 4")
+                }
+              >
+                Termostato 4
+              </div>
+            </div>
+
+            {!loading ? (
+              showLineChart && (
+                <div
+                  style={{
+                    margin: "0 auto",
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: 80,
+                    paddingBottom: 80,
+                  }}
+                >
+                  <LineChart
+                    tth={selectedTherm}
+                    dataLimit={500}
+                    title={selectedThermTitle}
+                  />
+                </div>
+              )
+            ) : (
+              <h1
+                style={{ color: "#fff", textAlign: "center", marginTop: 200 }}
+              >
+                <BeatLoader color="#fff" />
+              </h1>
+            )}
+          </div>
         </div>
       )}
     </div>

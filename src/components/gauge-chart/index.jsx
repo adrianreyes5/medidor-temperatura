@@ -12,9 +12,13 @@ const GaugeChart = ({ value, title }) => {
         chartType="Gauge"
         data={[
           ["Label", "Value"],
-          [title, value],
+          ['', value],
         ]}
         options={{
+          animation: {
+            easing: "out",
+            duration: 1500,
+          },
           greenFrom: -20,
           greenTo: 0,
           redFrom: 10,

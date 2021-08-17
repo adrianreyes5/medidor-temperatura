@@ -141,6 +141,7 @@ const LineChart = ({ dataLimit, tth, title }) => {
           data={lineCharData}
           options={{
             title,
+            colors: ["#a52714"],
             hAxis: {
               title: "Tiempo",
             },
@@ -148,9 +149,10 @@ const LineChart = ({ dataLimit, tth, title }) => {
               title: "Temperatura (°C)",
               ticks: [-20, 0, 20, 40],
             },
+            curveType: "function",
             animation: {
               startup: true,
-              easing: 'inAndOut',
+              easing: "inAndOut",
               duration: 1000,
             },
           }}
